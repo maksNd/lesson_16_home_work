@@ -1,5 +1,14 @@
 [
   {
+    "id": 0,
+    "first_name": "madmax",
+    "last_name": "Pauloh",
+    "age": 25,
+    "email": "elliot16@mymail.com",
+    "role": "executor",
+    "phone": "6197024884"
+  },
+  {
     "id": 1,
     "first_name": "Hudson",
     "last_name": "Pauloh",
