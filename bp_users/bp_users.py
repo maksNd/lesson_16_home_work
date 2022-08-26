@@ -50,7 +50,7 @@ def add_new_user():
     )
     db.session.add(new_user)
     db.session.commit()
-    return 'ok'
+    return 'user added'
 
 
 @bp_users.route('/<int:pk>', methods=['PUT'])
