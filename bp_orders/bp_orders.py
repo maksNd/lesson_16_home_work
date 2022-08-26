@@ -55,7 +55,7 @@ def add_new_order():
     )
     db.session.add(new_order)
     db.session.commit()
-    return 'ok'
+    return 'order added'
 
 
 @bp_orders.route('/<int:pk>', methods=['PUT'])
@@ -73,7 +73,7 @@ def update_order(pk):
     order_for_update.executor_id = data_for_update_order.get('executor_id')
     db.session.add(order_for_update)
     db.session.commit()
-    return 'ok'
+    return 'order updated'
 
 
 @bp_orders.route('/<int:pk>', methods=['DELETE'])
@@ -81,4 +81,4 @@ def delete_order(pk):
     order_for_delete = Order.query.get(pk)
     db.session.delete(order_for_delete)
     db.session.commit()
-    return 'ok'
+    return 'order deleted'

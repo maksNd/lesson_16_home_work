@@ -66,7 +66,7 @@ def update_user(pk):
     user_for_update.phone = data_for_update_user.get('phone')
     db.session.add(user_for_update)
     db.session.commit()
-    return 'ok'
+    return 'user updated'
 
 
 @bp_users.route('/<int:pk>', methods=['DELETE'])
@@ -74,4 +74,4 @@ def delete_user(pk):
     user_for_delete = User.query.get(pk)
     db.session.delete(user_for_delete)
     db.session.commit()
-    return 'ok'
+    return 'user deleted'

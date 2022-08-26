@@ -38,7 +38,7 @@ def add_new_offer():
     )
     db.session.add(new_offer)
     db.session.commit()
-    return 'ok'
+    return 'offer added'
 
 
 @bp_offers.route('/<int:pk>', methods=['PUT'])
@@ -50,7 +50,7 @@ def update_offer(pk):
     offer_for_update.executor_id = data_for_update_offer.get('executor_id')
     db.session.add(offer_for_update)
     db.session.commit()
-    return 'ok'
+    return 'offer updated'
 
 
 @bp_offers.route('/<int:pk>', methods=['DELETE'])
@@ -58,4 +58,4 @@ def delete_offer(pk):
     offer_for_delete = Offer.query.get(pk)
     db.session.delete(offer_for_delete)
     db.session.commit()
-    return 'ok'
+    return 'offer deleted'

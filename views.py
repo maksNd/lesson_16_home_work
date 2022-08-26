@@ -1,7 +1,4 @@
-import json
-
-from flask import Flask, request
-from db.model import app, User, Order, Offer, db
+from db.model import app
 from bp_users.bp_users import bp_users
 from bp_orders.bp_orders import bp_orders
 from bp_offers.bp_offers import bp_offers
