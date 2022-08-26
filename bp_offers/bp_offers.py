@@ -33,7 +33,6 @@ def pg_offer_by_id(id):
 def add_new_offer():
     data_for_new_offer = request.json
     new_offer = Offer(
-        id=data_for_new_offer.get('id'),
         order_id=data_for_new_offer.get('order_id'),
         executor_id=data_for_new_offer.get('executor_id')
     )
@@ -47,7 +46,6 @@ def update_offer(pk):
     data_for_update_offer = request.json
     offer_for_update = Offer.query.get(pk)
 
-    offer_for_update.id = data_for_update_offer.get('id')
     offer_for_update.order_id = data_for_update_offer.get('order_id')
     offer_for_update.executor_id = data_for_update_offer.get('executor_id')
     db.session.add(offer_for_update)
