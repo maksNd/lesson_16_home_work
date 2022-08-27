@@ -1,13 +1,6 @@
-import json
-from sqlalchemy import create_engine, Column, Text, Integer, String, ForeignKey
+from sqlalchemy import Column, Text, Integer, String, ForeignKey
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import declarative_base, sessionmaker, Query
-
-# engine = create_engine("sqlite:///users_orders.db")
-# db = declarative_base(bind=engine)
-# Session = sessionmaker(bind=engine)
-
 
 app = Flask(__name__)
 app.json.ensure_ascii = False
