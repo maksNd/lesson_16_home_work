@@ -5,7 +5,7 @@ from flask import Blueprint, request
 bp_orders = Blueprint('bp_orders', __name__)
 
 
-@bp_orders.route('/')
+@bp_orders.get('/')
 def pg_all_orders():
     all_orders = Order.query.all()
     orders_response = []
@@ -22,7 +22,7 @@ def pg_all_orders():
     return json.dumps(orders_response, indent=2, ensure_ascii=False)
 
 
-@bp_orders.route('/<int:id>')
+@bp_orders.get('/<int:id>')
 def pg_order_by_id(id):
     order_by_id = Order.query.get(id)
     if order_by_id is None:
@@ -40,7 +40,7 @@ def pg_order_by_id(id):
     return json.dumps(order, indent=2, ensure_ascii=False)
 
 
-@bp_orders.route('/', methods=['POST'])
+@bp_orders.post('/')
 def add_new_order():
     data_for_new_order = request.json
     new_order = Order(
@@ -58,7 +58,7 @@ def add_new_order():
     return 'order added'
 
 
-@bp_orders.route('/<int:pk>', methods=['PUT'])
+@bp_orders.put('/<int:pk>')
 def update_order(pk):
     data_for_update_order = request.json
     order_for_update = Order.query.get(pk)
@@ -76,7 +76,7 @@ def update_order(pk):
     return 'order updated'
 
 
-@bp_orders.route('/<int:pk>', methods=['DELETE'])
+@bp_orders.delete('/<int:pk>')
 def delete_order(pk):
     order_for_delete = Order.query.get(pk)
     db.session.delete(order_for_delete)

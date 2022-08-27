@@ -5,7 +5,7 @@ from flask import Blueprint, request
 bp_offers = Blueprint('bp_offers', __name__)
 
 
-@bp_offers.route('/')
+@bp_offers.get('/')
 def pg_all_offers():
     all_offers = Offer.query.all()
     offers_response = []
@@ -17,7 +17,7 @@ def pg_all_offers():
     return json.dumps(offers_response, indent=2)
 
 
-@bp_offers.route('/<int:id>')
+@bp_offers.get('/<int:id>')
 def pg_offer_by_id(id):
     offer_by_id = Offer.query.get(id)
     if offer_by_id is None:
@@ -29,7 +29,7 @@ def pg_offer_by_id(id):
     return json.dumps(offer)
 
 
-@bp_offers.route('/', methods=['POST'])
+@bp_offers.post('/')
 def add_new_offer():
     data_for_new_offer = request.json
     new_offer = Offer(
@@ -41,7 +41,7 @@ def add_new_offer():
     return 'offer added'
 
 
-@bp_offers.route('/<int:pk>', methods=['PUT'])
+@bp_offers.put('/<int:pk>')
 def update_offer(pk):
     data_for_update_offer = request.json
     offer_for_update = Offer.query.get(pk)
@@ -53,7 +53,7 @@ def update_offer(pk):
     return 'offer updated'
 
 
-@bp_offers.route('/<int:pk>', methods=['DELETE'])
+@bp_offers.delete('/<int:pk>')
 def delete_offer(pk):
     offer_for_delete = Offer.query.get(pk)
     db.session.delete(offer_for_delete)

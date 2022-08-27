@@ -5,6 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.json.ensure_ascii = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users_orders.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
+
 db = SQLAlchemy(app)
 
 

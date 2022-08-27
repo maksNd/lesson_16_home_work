@@ -1,11 +1,11 @@
 import json
 from db.model import db, User
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 
 bp_users = Blueprint('bp_users', __name__)
 
 
-@bp_users.route('/')
+@bp_users.get('/')
 def pg_all_users():
     all_users = User.query.all()
     users_response = []
@@ -18,10 +18,11 @@ def pg_all_users():
                                'email': user.email,
                                'role': user.role,
                                'phone': user.phone})
-    return json.dumps(users_response, indent=2)
+    # return json.dumps(users_response, indent=2)
+    return jsonify(users_response)
 
 
-@bp_users.route('/<int:id>')
+@bp_users.get('/<int:id>')
 def pg_user_by_id(id):
     user_by_id = User.query.get(id)
     if user_by_id is None:
@@ -37,7 +38,7 @@ def pg_user_by_id(id):
     return json.dumps(user)
 
 
-@bp_users.route('/', methods=['POST'])
+@bp_users.post('/')
 def add_new_user():
     data_for_new_user = request.json
     new_user = User(
@@ -53,7 +54,7 @@ def add_new_user():
     return 'user added'
 
 
-@bp_users.route('/<int:pk>', methods=['PUT'])
+@bp_users.put('/<int:pk>')
 def update_user(pk):
     data_for_update_user = request.json
     user_for_update = User.query.get(pk)
@@ -69,7 +70,7 @@ def update_user(pk):
     return 'user updated'
 
 
-@bp_users.route('/<int:pk>', methods=['DELETE'])
+@bp_users.delete('/<int:pk>')
 def delete_user(pk):
     user_for_delete = User.query.get(pk)
     db.session.delete(user_for_delete)

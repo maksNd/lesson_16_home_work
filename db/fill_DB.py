@@ -23,3 +23,5 @@ def fill_DB():
     db.session.add_all(orders)
     db.session.add_all(offers)
     db.session.commit()
+
+fill_DB()
