@@ -7,7 +7,7 @@ def get_data_from_json(path):
         return json.load(file)
 
 
-def fill_DB():
+def fill_db():
     db.drop_all()
     db.create_all()
 
@@ -23,5 +23,3 @@ def fill_DB():
     db.session.add_all(orders)
     db.session.add_all(offers)
     db.session.commit()
-
-fill_DB()

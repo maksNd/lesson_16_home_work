@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.app_context().push()
 app.json.ensure_ascii = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users_orders.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -40,3 +41,7 @@ class Offer(db.Model):
     id = Column(Integer, primary_key=True)
     order_id = Column(Integer, ForeignKey(Order.id), nullable=False)
     executor_id = Column(Integer, ForeignKey(User.id), nullable=False)
+
+
+db.drop_all()
+db.create_all()
